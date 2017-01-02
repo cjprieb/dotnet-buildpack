@@ -107,6 +107,9 @@ echo "Installing .NET CORE ${CORE_VERSION} from ${CORE_DOWNLOAD_LOCATION}"
 curl ${CORE_DOWNLOAD_LOCATION} -Ls | tar xz -C ${BUILD_DIR}/dotnet
 ln -s ${BUILD_DIR}/dotnet /app
 
+echo "dotnet --version"
+dotnet --version
+
 export PATH="/app/dotnet:${PATH}"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
 
