@@ -107,9 +107,6 @@ echo "Installing .NET CORE ${CORE_VERSION} from ${CORE_DOWNLOAD_LOCATION}"
 curl ${CORE_DOWNLOAD_LOCATION} -Ls | tar xz -C ${BUILD_DIR}/dotnet
 ln -s ${BUILD_DIR}/dotnet /app
 
-echo "dotnet --version"
-dotnet --version
-
 export PATH="/app/dotnet:${PATH}"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
 
@@ -136,6 +133,9 @@ echo "Reading App Name from project.json"
 PROJECT_DIR_NAME=$(basename $PROJECT_DIR)
 PROJECT_NAME=$(ruby -rjson -e "j = JSON.parse(File.open('${PROJECT_DIR}/project.json','r:bom|utf-8').read); unless j['buildOptions'].nil? ; puts j['buildOptions']['outputName'];end")
 echo "${PROJECT_NAME:=$PROJECT_DIR_NAME}"
+
+echo "dotnet --version"
+dotnet --version
 
 echo "Restoring the packages"
 dotnet restore ${SRC_DIR}
